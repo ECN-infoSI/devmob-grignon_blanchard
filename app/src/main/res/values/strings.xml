@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SeniorMarket</string>
+    <string name="product1">I am strong.</string>
+    <string name="product2">I believe in myself.</string>
+    <string name="product3">Each day is a new opportunity to grow and be a better version of myself.</string>
+    <string name="product4">Every challenge in my life is an opportunity to learn from.</string>
+    <string name="product5">I have so much to be grateful for.</string>
+    <string name="product6">Good things are always coming into my life.</string>
+    <string name="product7">New opportunities await me at every turn.</string>
+    <string name="product8">I have the courage to follow my heart.</string>
+    <string name="product9">Things will unfold at precisely the right time.</string>
+    <string name="product10">I will be present in all the moments that this day brings.</string>
+</resources>
