@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,11 +14,20 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.List
+import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -74,6 +84,39 @@ enum class ProductsScreen(@StringRes val title: Int){
     Product(title = R.string.product1),
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun NavBar() {
+    TopAppBar(
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            titleContentColor = MaterialTheme.colorScheme.primary,
+        ),
+        title = {},
+        navigationIcon = {
+            IconButton (onClick = { /* TODO : Go to main menu */ }) {
+                Icon(
+                    imageVector = Icons.Rounded.Home,
+                    contentDescription = "Go back home button"
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = { /* TODO : Go to previous carts menu */ }) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Rounded.List,
+                    contentDescription = "Consult previous carts button"
+                )
+            }
+            IconButton(onClick = { /* TODO : Go to cart menu */ }) {
+                Icon(
+                    imageVector = Icons.Rounded.ShoppingCart,
+                    contentDescription = "Consult cart button"
+                )
+            }
+        }
+    )
+
 @Composable
 fun ProductApp(
     //viewModel: OrderViewModel,
@@ -88,7 +131,7 @@ fun ProductApp(
     )*/
 
     Scaffold(
-
+       topBar = { NavBar() }
     ) { innerPadding ->
         //val uiState by viewModel.uiState.collectAsState()
         NavHost(
@@ -100,7 +143,6 @@ fun ProductApp(
                 ProductList(
                     navController = navController,
                     productList = Datasource().loadProducts())
-
             }
             composable(route = ProductsScreen.Product.name){
                 val context = LocalContext.current
@@ -165,10 +207,11 @@ private fun ProductList(
     productList : List<Product>,
     modifier: Modifier = Modifier
 ){
-    LazyColumn{
+    LazyColumn (
+        modifier = modifier
+    ){
         items(productList){ product ->
             ProductCard(product, modifier, navController)
-
         }
     }
 
