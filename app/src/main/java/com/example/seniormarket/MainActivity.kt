@@ -94,7 +94,7 @@ fun NavBar() {
         ),
         title = {},
         navigationIcon = {
-            IconButton (onClick = { /* TODO : Go to main menu */ }) {
+            IconButton(onClick = { /* TODO : Go to main menu */ }) {
                 Icon(
                     imageVector = Icons.Rounded.Home,
                     contentDescription = "Go back home button"
@@ -116,6 +116,7 @@ fun NavBar() {
             }
         }
     )
+}
 
 @Composable
 fun ProductApp(
