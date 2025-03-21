@@ -12,8 +12,10 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.List
 import androidx.compose.material.icons.rounded.Home
@@ -40,6 +42,12 @@ import com.example.seniormarket.data.Datasource
 import com.example.seniormarket.model.Product
 import com.example.seniormarket.ui.theme.ProductsTheme
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.CardDefaults
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.LineHeightStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -91,7 +99,7 @@ enum class ProductsScreen(@StringRes val title: Int){
 fun NavBar() {
     TopAppBar(
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            containerColor = Color(0xFFF6621E),
             titleContentColor = MaterialTheme.colorScheme.primary,
         ),
         title = {},
@@ -148,20 +156,21 @@ fun ProductApp(
                     productList = Datasource().loadProducts())
             }
             // Ecran de détail du produit avec les arguments stringResourceId et imageResourceId
-            composable(route = "product_screen/{stringResourceId}/{imageResourceId}") { backStackEntry ->
+            composable(route = "product_screen/{ResourceId}") { backStackEntry ->
                 // Récupérer les arguments passés dans la route
-                val stringResourceId = backStackEntry.arguments?.getString("stringResourceId")?.toInt() ?: -1
-                val imageResourceId = backStackEntry.arguments?.getString("imageResourceId")?.toInt() ?: -1
+                val resourceId = backStackEntry.arguments?.getString("ResourceId")?.toInt() ?: -1
 
                 // Trouver le produit correspondant
-                val product = Product(stringResourceId, imageResourceId)
+                val product = Datasource().loadProducts().find { it.stringResourceId == resourceId }
 
-                // Afficher le produit spécifique
-                ProductScreen(
-                    modifier = Modifier.fillMaxSize(),
-                    product = product,
-                    navController = navController
-                )
+                if (product != null) {
+                    // Afficher le produit spécifique
+                    ProductScreen(
+                        modifier = Modifier.fillMaxSize(),
+                        product = product,
+                        navController = navController
+                    )
+                }
             }
 
         }
@@ -176,31 +185,53 @@ fun ProductCard(
     navController: NavHostController = rememberNavController()
 
 ){
-    Card(modifier = modifier.padding(8.dp), /*elevation = 4.dp*/){
-        Column {
+    Card(
+        modifier = modifier.padding(8.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Color(0xFFADA498)  // Couleur de fond de la Card
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+
+                .padding(16.dp)
+        ) {
+            // Titre centré horizontalement
             Text(
                 text = stringResource(product.stringResourceId),
-                modifier = Modifier.padding(16.dp),
-                style = MaterialTheme.typography.headlineSmall
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 8.dp),
+                style = MaterialTheme.typography.headlineSmall,
+                textAlign = TextAlign.Center
             )
+
+            // Image sous le titre
             Image(
                 painter = painterResource(product.imageResourceId),
                 contentDescription = stringResource(product.stringResourceId),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(194.dp),
+                    .height(194.dp)
+                    .padding(bottom = 8.dp),
                 contentScale = ContentScale.Crop
             )
+
+            // Bouton "Afficher" rond, centré horizontalement
             Button(
-                onClick= { navController.navigate("product_screen/${product.stringResourceId}/${product.imageResourceId}")}
-                /*colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary,
-                    contentColor = MaterialTheme.colorScheme.onPrimary*/
-
+                onClick = {
+                    navController.navigate("product_screen/${product.stringResourceId}")
+                },
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFFF9AD4E),  // Couleur de fond du bouton
+                    contentColor = Color(0xFF101010)     // Couleur du texte du bouton
+                )
             ) {
-                Text(text = "Afficher")
+                Text(text = "GO")
             }
-
         }
     }
 
@@ -209,7 +240,6 @@ fun ProductCard(
 @Preview
 @Composable
 private fun ProductCardPreview() {
-    ProductCard(Product(R.string.product1, R.drawable.image2))
 }
 
 @Composable
