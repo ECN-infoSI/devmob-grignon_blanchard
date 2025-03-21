@@ -22,12 +22,13 @@ import com.example.seniormarket.model.Product
 
 @Composable
 fun ProductScreen(
+    product : Product,
     modifier : Modifier = Modifier,
     navController: NavHostController
 ) {
     Column(modifier = modifier) {
         // Affichage de la carte du produit
-        ProductCard(Product(R.string.product1, R.drawable.image1))
+        ProductCard(product)
 
         // Bouton pour revenir à la page ProductList
         Button(

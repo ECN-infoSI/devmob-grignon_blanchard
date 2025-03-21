@@ -71,7 +71,9 @@ class MainActivity : AppCompatActivity() {
 
 enum class ProductsScreen(@StringRes val title: Int){
     Start(title = R.string.app_name),
-    Product(title = R.string.product1),
+    Product1(title = R.string.product1),
+    Product2(title = R.string.product2),
+
 }
 
 @Composable
@@ -102,12 +104,20 @@ fun ProductApp(
                     productList = Datasource().loadProducts())
 
             }
-            composable(route = ProductsScreen.Product.name){
-                val context = LocalContext.current
+            // Ecran de détail du produit avec les arguments stringResourceId et imageResourceId
+            composable(route = "product_screen/{stringResourceId}/{imageResourceId}") { backStackEntry ->
+                // Récupérer les arguments passés dans la route
+                val stringResourceId = backStackEntry.arguments?.getString("stringResourceId")?.toInt() ?: -1
+                val imageResourceId = backStackEntry.arguments?.getString("imageResourceId")?.toInt() ?: -1
+
+                // Trouver le produit correspondant
+                val product = Product(stringResourceId, imageResourceId)
+
+                // Afficher le produit spécifique
                 ProductScreen(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    navController = navController,
+                    modifier = Modifier.fillMaxSize(),
+                    product = product,
+                    navController = navController
                 )
             }
 
@@ -139,7 +149,7 @@ fun ProductCard(
                 contentScale = ContentScale.Crop
             )
             Button(
-                onClick= { navController.navigate(ProductsScreen.Product.name)}
+                onClick= { navController.navigate("product_screen/${product.stringResourceId}/${product.imageResourceId}")}
                 /*colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.onPrimary*/
