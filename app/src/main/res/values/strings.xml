@@ -1,13 +1,63 @@
 <resources>
     <string name="app_name">SeniorMarket</string>
-    <string name="product1">I am strong.</string>
-    <string name="product2">I believe in myself.</string>
-    <string name="product3">Each day is a new opportunity to grow and be a better version of myself.</string>
-    <string name="product4">Every challenge in my life is an opportunity to learn from.</string>
-    <string name="product5">I have so much to be grateful for.</string>
-    <string name="product6">Good things are always coming into my life.</string>
-    <string name="product7">New opportunities await me at every turn.</string>
-    <string name="product8">I have the courage to follow my heart.</string>
-    <string name="product9">Things will unfold at precisely the right time.</string>
-    <string name="product10">I will be present in all the moments that this day brings.</string>
+
+    <!-- Product 1 -->
+    <string name="product1">Café Moulu Arabica</string>
+    <string name="description1">Café moulu 100% Arabica, pour un arôme riche et une saveur équilibrée.</string>
+    <string name="price1">3,49€</string>
+    <string name="quantity1">250g</string>
+
+    <!-- Product 2 -->
+    <string name="product2">Miel de Fleurs BIO</string>
+    <string name="description2">Miel biologique récolté à partir de diverses fleurs, doux et parfumé.</string>
+    <string name="price2">4,99€</string>
+    <string name="quantity2">350g</string>
+
+    <!-- Product 3 -->
+    <string name="product3">Riz Basmati</string>
+    <string name="description3">Riz basmati long grain, parfumé et idéal pour accompagner tous vos plats.</string>
+    <string name="price3">1,89€</string>
+    <string name="quantity3">1kg</string>
+
+    <!-- Product 4 -->
+    <string name="product4">Beurre Doux</string>
+    <string name="description4">Beurre doux crémeux, parfait pour tartiner ou cuisiner.</string>
+    <string name="price4">1,29€</string>
+    <string name="quantity4">250g</string>
+
+    <!-- Product 5 -->
+    <string name="product5">Confiture de Fraises</string>
+    <string name="description5">Confiture de fraises extra, préparée avec des fruits sélectionnés pour une saveur intense.</string>
+    <string name="price5">2,19€</string>
+    <string name="quantity5">340g</string>
+
+    <!-- Product 6 -->
+    <string name="product6">Lentilles Vertes</string>
+    <string name="description6">Lentilles vertes du Puy, riches en protéines et en fibres, idéales pour des plats végétariens.</string>
+    <string name="price6">1,69€</string>
+    <string name="quantity6">500g</string>
+
+    <!-- Product 7 -->
+    <string name="product7">Thé Vert BIO</string>
+    <string name="description7">Thé vert biologique, riche en antioxydants, pour une pause détente et bien-être.</string>
+    <string name="price7">2,99€</string>
+    <string name="quantity7">100g</string>
+
+    <!-- Product 8 -->
+    <string name="product8">Huile d\'Olive Vierge Extra</string>
+    <string name="description8">Huile d\'olive vierge extra, pressée à froid, pour une saveur authentique et des bienfaits nutritionnels.</string>
+    <string name="price8">4,49€</string>
+    <string name="quantity8">500ml</string>
+
+    <!-- Product 9 -->
+    <string name="product9">Compote de Pommes Sans Sucre Ajouté</string>
+    <string name="description9">Compote de pommes naturelle, sans sucre ajouté, pour une collation saine et gourmande.</string>
+    <string name="price9">1,79€</string>
+    <string name="quantity9">4x100g</string>
+
+    <!-- Product 10 -->
+    <string name="product10">Purée d\'Amandes BIO</string>
+    <string name="description10">Purée d\'amandes biologique, idéale pour tartiner ou enrichir vos préparations culinaires.</string>
+    <string name="price10">5,99€</string>
+    <string name="quantity10">170g</string>
 </resources>
