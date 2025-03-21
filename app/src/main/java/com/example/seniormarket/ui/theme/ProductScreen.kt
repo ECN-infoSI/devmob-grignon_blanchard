@@ -22,9 +22,20 @@ import com.example.seniormarket.model.Product
 
 @Composable
 fun ProductScreen(
-    modifier : Modifier = Modifier
+    modifier : Modifier = Modifier,
+    navController: NavHostController
 ) {
-    ProductCard(Product(R.string.product1, R.drawable.image1))
+    Column(modifier = modifier) {
+        // Affichage de la carte du produit
+        ProductCard(Product(R.string.product1, R.drawable.image1))
+
+        // Bouton pour revenir à la page ProductList
+        Button(
+            onClick = { navController.popBackStack() } // Cette ligne permet de revenir à l'écran précédent
+        ) {
+            Text(text = "Retour")
+        }
+    }
 }
 
 @Composable

@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
 
 enum class ProductsScreen(@StringRes val title: Int){
     Start(title = R.string.app_name),
-    Product(title = R.string.product),
+    Product(title = R.string.product1),
 }
 
 @Composable
@@ -106,7 +106,8 @@ fun ProductApp(
                 val context = LocalContext.current
                 ProductScreen(
                     modifier = Modifier
-                        .fillMaxSize()
+                        .fillMaxSize(),
+                    navController = navController,
                 )
             }
 
@@ -155,7 +156,7 @@ fun ProductCard(
 @Preview
 @Composable
 private fun ProductCardPreview() {
-    ProductCard(Product(R.string.product1, R.drawable.image1))
+    ProductCard(Product(R.string.product1, R.drawable.image2))
 }
 
 @Composable
